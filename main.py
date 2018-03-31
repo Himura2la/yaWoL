@@ -37,10 +37,10 @@ def wake(target, ping_requests):
     print("Target does not answer... T_T")
     return False
 
+if __name__ == "__main__":
+    hosts = [l.split(',') for l in open('hosts.csv').read().split('\n')]
+    hosts = {r[0]: {'host': r[1],
+                    'broadcast': r[2],
+                    'mac': r[3]} for r in hosts if len(r) == 4}
 
-hosts = [l.split(',') for l in open('hosts.csv').read().split('\n')]
-hosts = {r[0]: {'host': r[1],
-                'broadcast': r[2],
-                'mac': r[3]} for r in hosts if len(r) == 4}
-
-wake(hosts[sys.argv[1]], 20)
+    wake(hosts[sys.argv[1]], 20)
